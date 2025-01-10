@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs"
 import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 export async function POST(request:Request) {
+    //connect to db
     await dbConnect()
     try {
         const {username,email,password}= await request.json()
@@ -12,6 +13,7 @@ export async function POST(request:Request) {
             username,
             isVerified:true
         })
+        //verified username exists
         if(existingUserVerifiedByUsername){
             return Response.json({
                 success:false,
@@ -23,6 +25,7 @@ export async function POST(request:Request) {
         const verifyCode=Math.floor(100000+Math.random()*90000).toString()
         
         if(existingUserByEmail){
+            //verified user exists
             if (existingUserByEmail.isVerified){
                 return Response.json({
                     success: false,
@@ -30,6 +33,7 @@ export async function POST(request:Request) {
                 }, { status: 500 })
             }
             else{
+                //register unverified user
                 const hashedPassword=await bcrypt.hash(password,10)
                 existingUserByEmail.password=hashedPassword;
                 existingUserByEmail.verifyCode=verifyCode;
@@ -38,6 +42,7 @@ export async function POST(request:Request) {
             }
         }
         else{
+            //register new user
             const hashedPassword=await bcrypt.hash(password,10)
             const expiryDate=new Date()
             expiryDate.setHours(expiryDate.getHours()+1)
