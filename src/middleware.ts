@@ -25,12 +25,12 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
     matcher: [
-        '/sign-in',
+        
         '/sign-up',
         '/',
         '/dashboard/:path*',
-        'verify/:path'
+        '/verify/:path'
     ]
 }
-
+//add '/sign-in'
 export { default } from "next-auth/middleware"

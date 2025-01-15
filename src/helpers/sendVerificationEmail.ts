@@ -5,7 +5,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 export async function sendVerficationEmail(email:string,username:string,verifyCode:string) :Promise<ApiResponse>{
     try {
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: 'Acme <onboarding@resend.dev>',
             to: email,
             subject: 'Mystery message | Verifciation code',
             react: VerificationEmail({username,otp:verifyCode}),
@@ -17,3 +17,4 @@ export async function sendVerficationEmail(email:string,username:string,verifyCo
         return {success:false, message:"Failed to send verifcation email"}
     }
 }
+
