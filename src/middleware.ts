@@ -27,9 +27,11 @@ export const config = {
     matcher: [
         
         '/',
-        '/dashboard/:path*',
-        '/verify/:path'
+        
+        
     ]
 }
 //add '/sign-in'
+//'/verify/:path'
+//'/dashboard/:path*',
 export { default } from "next-auth/middleware"

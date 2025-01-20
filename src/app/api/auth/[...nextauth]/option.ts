@@ -13,7 +13,7 @@ export const authOptions:NextAuthOptions={
             id: "credentials",
             name: "Credentials",
             credentials: {
-                email: { label: "Email", type: "text", },
+                identifier: { label: "Email", type: "text", },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials:any):Promise<any>{
@@ -23,10 +23,10 @@ export const authOptions:NextAuthOptions={
                         $or:[
                             {email:credentials.identifier},
                             {username:credentials.identifier}
-                        ]
+                        ]                       
                     })
                     if(!user){
-                        throw new Error("no user found with this email")
+                        throw new Error("no user found with this credentials")
                     }
                     if(!user.isVerified){
                         throw new Error("Please verify your account before login")
