@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from 'embla-carousel-autoplay';
 import messages from "@/messages.json"
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const page = () => {
   return (
@@ -23,6 +25,14 @@ const page = () => {
           <p className="mt-3 md:mt-4 text-base md:text-lg">
             True Feedback - Where your identity remains a secret.
           </p>
+          <Link href="/sign-up">
+            <Button
+              className="w-full md:w-auto bg-slate-100 text-black my-4"
+              variant={"outline"}
+            >
+              SignUp
+            </Button>
+          </Link>
         </section>
 
         <Carousel
@@ -34,7 +44,7 @@ const page = () => {
               <CarouselItem key={index}>
                 <div className="p-1">
                   <Card>
-                    <CardHeader className='text-center'>
+                    <CardHeader className="text-center">
                       {message.title}
                     </CardHeader>
                     <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -42,7 +52,9 @@ const page = () => {
                         {message.content}
                       </span>
                     </CardContent>
-                    <CardFooter className='text-center'>{message.received}</CardFooter>
+                    <CardFooter className="text-center">
+                      {message.received}
+                    </CardFooter>
                   </Card>
                 </div>
               </CarouselItem>
@@ -54,7 +66,7 @@ const page = () => {
       </main>
 
       <footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
-        © 2025  mystery message. All rights reserved.
+        © 2025 mystery message. All rights reserved.
       </footer>
     </>
   );

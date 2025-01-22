@@ -4,10 +4,10 @@ export { default } from "next-auth/middleware";
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
-    
+    "/dashboard/:path*", 
     "/sign-up",
     "/verify/:path*",
+    '/',
     "/forgot-password/:path*",
   ],
 };

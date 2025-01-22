@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { useDebounceValue } from "@/app/hooks/useDebounceValue"
+
 import { useDebounceCallback } from "@/app/hooks/useDebounceCallback"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
@@ -104,20 +104,28 @@ function page() {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                  <Input placeholder="username"
-                    {...field}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      debounced(e.target.value);
-                    }}
-                  />
+                    <Input
+                      placeholder="username"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        debounced(e.target.value);
+                      }}
+                    />
                   </FormControl>
-                  {isCheckingUsername && <Loader2 className="animate-spin"/>}
-                  <p className={`text-sm ${usernameMessage ==="username is available"?'text-green-500':'text-red-500'}`}>test {usernameMessage}</p>
+                  {isCheckingUsername && <Loader2 className="animate-spin" />}
+                  {username.length > 0 && (
+                    <p
+                      className={`text-sm ${usernameMessage === "username is available" ? "text-green-500" : "text-red-500"}`}
+                    >
+                      {usernameMessage}
+                    </p>
+                  )}
+
                   <FormMessage />
                 </FormItem>
               )}
-            /> 
+            />
             <FormField
               name="email"
               control={form.control}
@@ -125,9 +133,7 @@ function page() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="email"
-                      {...field}
-                    />
+                    <Input placeholder="email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -140,28 +146,27 @@ function page() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="password"
-                      {...field}
-                    />
+                    <Input type="password" placeholder="password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button type="submit" disabled={isSubmitting}>
-              {
-                isSubmitting?(
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />Please wait 
-                  </>
-                ):("SignUp")
-              }
-            </Button>  
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                "SignUp"
+              )}
+            </Button>
           </form>
         </Form>
         <div className="text-center mt-4">
           <p>
-            Already a member?{' '}
+            Already a member?{" "}
             <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
               Sign in
             </Link>
@@ -169,7 +174,7 @@ function page() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default page
