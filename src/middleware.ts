@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/', request.url))
 }
 
-// See "Matching Paths" below to learn more
+// middleware will be invoked for every route in porject, matchers precisely target or exclude specific routes
 export const config = {
     matcher: [ 
         '/sign-in',
@@ -31,7 +31,5 @@ export const config = {
         '/dashboard/:path*'
     ]
 }
-//add '/sign-in'
-//'/verify/:path'
-//'/dashboard/:path*',
+
 export { default } from "next-auth/middleware"
