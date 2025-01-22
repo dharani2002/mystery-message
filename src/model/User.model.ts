@@ -68,4 +68,8 @@ const userSchema: Schema<User>=new Schema({
 // so we give optional if its running for first time and if model is already created
 const UserModel=(mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User",userSchema)
 
+export const MessageModel =
+  (mongoose.models.Message as mongoose.Model<Message>) ||
+  mongoose.model<Message>("Message", MessageSchema);
+
 export default UserModel;

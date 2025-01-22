@@ -1,9 +1,8 @@
-import React from 'react'
+"use client";
+
 
 function page() {
-  return (
-    <div>message page</div>
-  )
+  return <div>message page</div>;
 }
 
-export default page
+export default page;
