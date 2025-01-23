@@ -32,9 +32,9 @@ export async function GET(request:Request) {
               { $group: { _id: "$_id", messages: { $push: "$messages" } } },
             ]).exec();
 
-        //console.log(user[0].messages)
+        //console.log(user)
 
-        if(!user|| user.length===0){
+        if(!user){
             return Response.json(
                 {
                     success:false,
@@ -44,6 +44,19 @@ export async function GET(request:Request) {
                     status:404
                 }
             )
+        }
+
+        if(user.length===0){
+            return Response.json(
+                {
+                success: true,
+                message: "user has no messages",
+                },
+                {
+                status: 200,
+                }
+            );
+
         }
 
         return Response.json(
