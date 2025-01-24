@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 
-function page() {
+function PublicProfilePage() {
   const params=useParams<{username:string}>()
   const username=params.username
 
@@ -79,7 +79,7 @@ function page() {
     finally{
       setIsSuggestLoading(false)
     }
-  }, [setIsSuggestLoading,setSuggestedContent]);
+  }, [setIsSuggestLoading,setSuggestedContent,toast]);
 
     return (
       <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
@@ -170,4 +170,4 @@ function page() {
 
 }
 
-export default page;
+export default PublicProfilePage;

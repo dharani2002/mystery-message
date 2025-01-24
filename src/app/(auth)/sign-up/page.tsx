@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 
-function page() {
+function SignUp() {
   const [username, setUsername]=useState('')
   const [usernameMessage,setUsernameMessage]=useState('')
   const [isCheckingUsername,setIsCheckingUsername]=useState(false)
@@ -76,7 +76,7 @@ function page() {
     } catch (error) {
       console.error("error in signup of user",error)
       const axiosError = error as AxiosError<ApiResponse>
-      let errorMessage=axiosError.response?.data.message
+      const errorMessage=axiosError.response?.data.message
       toast({
         title:"Signup failed",
         description:errorMessage,
@@ -177,4 +177,4 @@ function page() {
   );
 }
 
-export default page
+export default SignUp

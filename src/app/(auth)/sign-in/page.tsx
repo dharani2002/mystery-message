@@ -4,7 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import Link from "next/link"
+
 
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
@@ -18,7 +18,7 @@ import { signInSchema } from "@/schema/signIn.schema"
 import { signIn } from "next-auth/react"
 
 
-function page() {
+function SignIn() {
 
   //i will wait for 300 ms and then send the reuqest to check for username or else for each key pressedn it will send a request
 
@@ -111,4 +111,4 @@ function page() {
   )
 }
 
-export default page
+export default SignIn

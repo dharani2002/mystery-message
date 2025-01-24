@@ -4,6 +4,12 @@ import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 
+
+export interface Credentials {
+  identifier: string;
+  password: string;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -13,7 +19,7 @@ export const authOptions: NextAuthOptions = {
         identifier: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(credentials): Promise<any> {
         if (!credentials?.identifier || !credentials?.password) {
           throw new Error("Please provide all required fields");
         }
@@ -41,8 +47,10 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error("Incorrect password ");
           }
-        } catch (error: any) {
-          throw new Error(error);
+        } catch (error: unknown) {
+          if(error instanceof Error)
+          {throw new Error(error.message);}
+          throw new Error("unexpected error has occured while signing in")
         }
       },
     }),

@@ -2,7 +2,6 @@ import { sendVerficationEmail } from "@/helpers/sendVerificationEmail";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 import bcrypt from "bcryptjs"
-import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 export async function POST(request:Request) {
     //connect to db
