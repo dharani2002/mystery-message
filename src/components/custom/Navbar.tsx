@@ -5,12 +5,19 @@ import Link from 'next/link'
 import { useSession,signOut } from 'next-auth/react'
 import {User} from 'next-auth'
 import { Button } from '../ui/button'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
 
     const {data:session}=useSession()
+    const router=useRouter()
     
     const user =session?.user as User//session is accessible and we get user details from it not data.user check next auth docs
+
+    const onSubmit=()=>{
+        signOut()
+        router.replace('/')
+    }
 
 
   return (
@@ -21,7 +28,7 @@ const Navbar = () => {
                 session?(
                     <>
                     <span className="mr-4">Welcome,{user?.username|| user?.email}</span>
-                    <Button onClick={()=>signOut()}>Logout</Button>
+                    <Button onClick={onSubmit}>Logout</Button>
                     </>
                 ):(
                     <Link href='/sign-in'>
