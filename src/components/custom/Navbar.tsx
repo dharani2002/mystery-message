@@ -15,8 +15,7 @@ const Navbar = () => {
     const user =session?.user as User//session is accessible and we get user details from it not data.user check next auth docs
 
     const onSubmit=()=>{
-        signOut()
-        router.replace('/')
+        signOut({ callbackUrl: "/sign-in" });
     }
 
 
